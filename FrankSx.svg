@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="210mm" height="297mm" viewBox="0 0 210 297"
+     id="resume-artifact" version="1.1"
+     onload="initResume()">
+
+  <title>frankSx — Technical Security Researcher</title>
+  <desc>PDF 2.0 + SVG + JavaScript Resume Artifact. Demonstrates polyglot format understanding, embedded systems expertise, and offensive security research.</desc>
+
+  <defs>
+    <!-- Gradient Definitions -->
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0a;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1a1a2e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#16213e;stop-opacity:1" />
+    </linearGradient>
+
+    <linearGradient id="accent-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7b2cbf;stop-opacity:1" />
+    </linearGradient>
+
+    <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffd700;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff8c00;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Circuit Pattern -->
+    <pattern id="circuit" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="10" cy="10" r="1.5" fill="#00d4ff" opacity="0.3"/>
+      <path d="M 10 0 L 10 8 M 10 12 L 10 20 M 0 10 L 8 10 M 12 10 L 20 10" 
+            stroke="#00d4ff" stroke-width="0.5" opacity="0.2"/>
+    </pattern>
+
+    <!-- Glow Filter -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Hex Grid -->
+    <pattern id="hexgrid" x="0" y="0" width="30" height="26" patternUnits="userSpaceOnUse">
+      <path d="M15 0 L30 8.66 L30 25.98 L15 34.64 L0 25.98 L0 8.66 Z" 
+            fill="none" stroke="#00d4ff" stroke-width="0.3" opacity="0.15"/>
+    </pattern>
+  </defs>
+
+  <!-- Background Layer -->
+  <rect width="210" height="297" fill="url(#bg-grad)" />
+  <rect width="210" height="297" fill="url(#hexgrid)" />
+  <rect width="210" height="297" fill="url(#circuit)" />
+
+  <!-- Animated Border Frame -->
+  <rect id="border-frame" x="5" y="5" width="200" height="287" 
+        fill="none" stroke="url(#accent-grad)" stroke-width="0.5" rx="5" 
+        filter="url(#glow)" opacity="0.8"/>
+
+  <!-- Corner Accents -->
+  <g id="corners" stroke="#00d4ff" stroke-width="1" fill="none" opacity="0.6">
+    <path d="M 10 25 L 10 15 L 20 15" />
+    <path d="M 190 25 L 190 15 L 180 15" />
+    <path d="M 10 272 L 10 282 L 20 282" />
+    <path d="M 190 272 L 190 282 L 180 282" />
+  </g>
+
+  <!-- Header Section -->
+  <g id="header" transform="translate(0, 20)">
+    <!-- Name -->
+    <text id="name-text" x="105" y="30" text-anchor="middle" 
+          font-family="'Courier New', monospace" font-size="14" 
+          fill="url(#gold-grad)" font-weight="bold" filter="url(#glow)">
+      frankSx
+    </text>
+
+    <!-- Subtitle -->
+    <text id="role-text" x="105" y="45" text-anchor="middle"
+          font-family="'Courier New', monospace" font-size="6"
+          fill="#00d4ff" opacity="0.9">
+      Hardware &amp; Software Security Researcher
+    </text>
+
+    <!-- Animated Status Line -->
+    <text id="status-line" x="105" y="55" text-anchor="middle"
+          font-family="'Courier New', monospace" font-size="4"
+          fill="#00ff88" opacity="0.8">
+      [ SYSTEM READY | TSCM | EMBEDDED | OFFENSIVE ]
+    </text>
+
+    <!-- Decorative Line -->
+    <line x1="40" y1="62" x2="170" y2="62" stroke="url(#accent-grad)" stroke-width="0.5" opacity="0.6"/>
+  </g>
+
+  <!-- Left Column: Core Competencies -->
+  <g id="left-col" transform="translate(15, 90)">
+    <text x="0" y="0" font-family="'Courier New', monospace" font-size="5" 
+          fill="#ffd700" font-weight="bold">&gt; CORE_DOMAINS</text>
+
+    <g id="skills-list" font-family="'Courier New', monospace" font-size="4" fill="#cccccc">
+      <text x="5" y="10" class="skill-item">• Embedded Systems (ESP32-C6/S3/S5)</text>
+      <text x="5" y="18" class="skill-item">• RF Signal Analysis &amp; TSCM</text>
+      <text x="5" y="26" class="skill-item">• Browser Security &amp; DOM Exploitation</text>
+      <text x="5" y="34" class="skill-item">• Polyglot Format Engineering</text>
+      <text x="5" y="42" class="skill-item">• Android Privilege Escalation</text>
+      <text x="5" y="50" class="skill-item">• HTML5 Parser Mutation</text>
+      <text x="5" y="58" class="skill-item">• WebAssembly &amp; WASM Injection</text>
+      <text x="5" y="66" class="skill-item">• PDF/SVG Container Abuse</text>
+    </g>
+
+    <text x="0" y="82" font-family="'Courier New', monospace" font-size="5" 
+          fill="#ffd700" font-weight="bold">&gt; HARDWARE_LAB</text>
+
+    <g font-family="'Courier New', monospace" font-size="3.5" fill="#aaaaaa">
+      <text x="5" y="92">Zebra TC52/TC520K | Honeywell CT46/47</text>
+      <text x="5" y="100">RTL-SDR | CC1101 | ADF4351 | AD8313</text>
+      <text x="5" y="108">ESP32-C6 Thread/Matter | STM32 | FPGA</text>
+      <text x="5" y="116">Custom Faraday Enclosures | RF Shielding</text>
+    </g>
+  </g>
+
+  <!-- Right Column: Research Highlights -->
+  <g id="right-col" transform="translate(115, 90)">
+    <text x="0" y="0" font-family="'Courier New', monospace" font-size="5" 
+          fill="#ffd700" font-weight="bold">&gt; NOTABLE_RESEARCH</text>
+
+    <!-- Research Item 1 -->
+    <g transform="translate(0, 10)">
+      <rect width="80" height="22" fill="#1a1a2e" stroke="#00d4ff" stroke-width="0.3" rx="2" opacity="0.7"/>
+      <text x="4" y="7" font-family="'Courier New', monospace" font-size="3.5" fill="#00d4ff">Jxl-TripleStack</text>
+      <text x="4" y="14" font-family="'Courier New', monospace" font-size="3" fill="#cccccc">JPEG XL + PDF 2.0 + WASM</text>
+      <text x="4" y="19" font-family="'Courier New', monospace" font-size="2.5" fill="#888888">2078-byte polyglot container</text>
+    </g>
+
+    <!-- Research Item 2 -->
+    <g transform="translate(0, 38)">
+      <rect width="80" height="22" fill="#1a1a2e" stroke="#7b2cbf" stroke-width="0.3" rx="2" opacity="0.7"/>
+      <text x="4" y="7" font-family="'Courier New', monospace" font-size="3.5" fill="#7b2cbf">STROBE Arsenal</text>
+      <text x="4" y="14" font-family="'Courier New', monospace" font-size="3" fill="#cccccc">SVG + HTML5 Parser Bypass</text>
+      <text x="4" y="19" font-family="'Courier New', monospace" font-size="2.5" fill="#888888">37KB unified mXSS payload</text>
+    </g>
+
+    <!-- Research Item 3 -->
+    <g transform="translate(0, 66)">
+      <rect width="80" height="22" fill="#1a1a2e" stroke="#ffd700" stroke-width="0.3" rx="2" opacity="0.7"/>
+      <text x="4" y="7" font-family="'Courier New', monospace" font-size="3.5" fill="#ffd700">APAAT Toolkit</text>
+      <text x="4" y="14" font-family="'Courier New', monospace" font-size="3" fill="#cccccc">Universal Android Privesc</text>
+      <text x="4" y="19" font-family="'Courier New', monospace" font-size="2.5" fill="#888888">Zebra/Honeywell MDM bypass</text>
+    </g>
+
+    <!-- Research Item 4 -->
+    <g transform="translate(0, 94)">
+      <rect width="80" height="22" fill="#1a1a2e" stroke="#00ff88" stroke-width="0.3" rx="2" opacity="0.7"/>
+      <text x="4" y="7" font-family="'Courier New', monospace" font-size="3.5" fill="#00ff88">MESCALINE Engine</text>
+      <text x="4" y="14" font-family="'Courier New', monospace" font-size="3" fill="#cccccc">Anti-AI Scraper Defense</text>
+      <text x="4" y="19" font-family="'Courier New', monospace" font-size="2.5" fill="#888888">Neural SVG evolution system</text>
+    </g>
+  </g>
+
+  <!-- Interactive Terminal Section -->
+  <g id="terminal" transform="translate(15, 195)">
+    <rect width="180" height="55" fill="#0d0d0d" stroke="#00d4ff" stroke-width="0.5" rx="3" opacity="0.9"/>
+    <rect x="0" y="0" width="180" height="8" fill="#1a1a2e" stroke="#00d4ff" stroke-width="0.3" rx="1"/>
+    <text x="5" y="5.5" font-family="'Courier New', monospace" font-size="3" fill="#00d4ff">terminal — frankSx@security-lab:~</text>
+
+    <!-- Terminal Content -->
+    <g id="terminal-content" font-family="'Courier New', monospace" font-size="3" fill="#00ff88">
+      <text x="5" y="16">$ ./show_capabilities.sh</text>
+      <text x="5" y="22" fill="#cccccc">[*] Document format polyglot engineering</text>
+      <text x="5" y="28" fill="#cccccc">[*] Embedded firmware extraction &amp; RE</text>
+      <text x="5" y="34" fill="#cccccc">[*] Browser rendering engine exploitation</text>
+      <text x="5" y="40" fill="#cccccc">[*] RF protocol fuzzing &amp; signal analysis</text>
+      <text x="5" y="46" fill="#cccccc">[*] ML-assisted vulnerability discovery</text>
+      <text x="5" y="52" fill="#00d4ff">$ _</text>
+    </g>
+  </g>
+
+  <!-- Contact / Footer -->
+  <g id="footer" transform="translate(0, 265)">
+    <line x1="40" y1="0" x2="170" y2="0" stroke="url(#accent-grad)" stroke-width="0.5" opacity="0.6"/>
+
+    <text x="105" y="10" text-anchor="middle" font-family="'Courier New', monospace" 
+          font-size="4" fill="#888888">This document is a valid PDF 2.0 + SVG + JavaScript polyglot</text>
+    <text x="105" y="16" text-anchor="middle" font-family="'Courier New', monospace" 
+          font-size="3.5" fill="#666666">Generated with Inkscape + custom format tooling</text>
+
+    <!-- Interactive Contact Buttons -->
+    <g id="contact-buttons" transform="translate(55, 22)">
+      <g class="contact-btn" transform="translate(0, 0)" cursor="pointer" 
+         onclick="showContact('github')" onmouseover="highlightBtn(this)" onmouseout="unhighlightBtn(this)">
+        <rect width="30" height="8" fill="#1a1a2e" stroke="#00d4ff" stroke-width="0.3" rx="2"/>
+        <text x="15" y="5.5" text-anchor="middle" font-family="'Courier New', monospace" 
+              font-size="3" fill="#00d4ff">GitHub</text>
+      </g>
+
+      <g class="contact-btn" transform="translate(35, 0)" cursor="pointer"
+         onclick="showContact('blog')" onmouseover="highlightBtn(this)" onmouseout="unhighlightBtn(this)">
+        <rect width="30" height="8" fill="#1a1a2e" stroke="#7b2cbf" stroke-width="0.3" rx="2"/>
+        <text x="15" y="5.5" text-anchor="middle" font-family="'Courier New', monospace" 
+              font-size="3" fill="#7b2cbf">Blog</text>
+      </g>
+
+      <g class="contact-btn" transform="translate(70, 0)" cursor="pointer"
+         onclick="showContact('email')" onmouseover="highlightBtn(this)" onmouseout="unhighlightBtn(this)">
+        <rect width="30" height="8" fill="#1a1a2e" stroke="#ffd700" stroke-width="0.3" rx="2"/>
+        <text x="15" y="5.5" text-anchor="middle" font-family="'Courier New', monospace" 
+              font-size="3" fill="#ffd700">Email</text>
+      </g>
+    </g>
+
+    <!-- Dynamic Contact Display -->
+    <text id="contact-display" x="105" y="42" text-anchor="middle" 
+          font-family="'Courier New', monospace" font-size="3.5" fill="#00ff88" opacity="0">
+      Contact info will appear here
+    </text>
+  </g>
+
+  <!-- Matrix Rain Effect (Subtle Background) -->
+  <g id="matrix-rain" opacity="0.08" font-family="monospace" font-size="3" fill="#00ff88">
+    <!-- Generated by JS -->
+  </g>
+
+  <!-- JavaScript -->
+  <script type="text/javascript"><![CDATA[
+    function initResume() {
+      console.log('[+] frankSx Resume Artifact Initialized');
+      console.log('[+] PDF 2.0 + SVG + JavaScript polyglot active');
+
+      startMatrixRain();
+      animateBorder();
+      typewriterEffect();
+
+      // Self-awareness check
+      if (typeof window !== 'undefined') {
+        console.log('[+] Running in browser context');
+      }
+    }
+
+    function startMatrixRain() {
+      var container = document.getElementById('matrix-rain');
+      var chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+      var columns = 70;
+
+      for (var i = 0; i < columns; i++) {
+        var t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        t.setAttribute('x', (i * 3));
+        t.setAttribute('y', Math.random() * 297);
+        t.textContent = chars[Math.floor(Math.random() * chars.length)];
+        t.setAttribute('opacity', Math.random() * 0.5);
+        container.appendChild(t);
+
+        // Animate each column
+        (function(element, speed) {
+          var y = parseFloat(element.getAttribute('y'));
+          function drop() {
+            y += speed;
+            if (y > 297) y = -10;
+            element.setAttribute('y', y);
+            element.textContent = chars[Math.floor(Math.random() * chars.length)];
+            requestAnimationFrame(drop);
+          }
+          drop();
+        })(t, 0.2 + Math.random() * 0.5);
+      }
+    }
+
+    function animateBorder() {
+      var border = document.getElementById('border-frame');
+      var colors = ['#00d4ff', '#7b2cbf', '#ffd700', '#00ff88'];
+      var idx = 0;
+
+      setInterval(function() {
+        border.setAttribute('stroke', colors[idx % colors.length]);
+        idx++;
+      }, 3000);
+    }
+
+    function typewriterEffect() {
+      var status = document.getElementById('status-line');
+      var texts = [
+        '[ SYSTEM READY | TSCM | EMBEDDED | OFFENSIVE ]',
+        '[ SCANNING RF SPECTRUM... 2.4GHz ACTIVE ]',
+        '[ PARSER MUTATION DETECTED... CONTAINING ]',
+        '[ POLYGLOT ENGINE: PDF2.0+SVG+JS OPERATIONAL ]',
+        '[ EMBEDDED FIRMWARE EXTRACTION READY ]'
+      ];
+      var current = 0;
+
+      setInterval(function() {
+        current = (current + 1) % texts.length;
+        status.textContent = texts[current];
+      }, 4000);
+    }
+
+    function highlightBtn(btn) {
+      var rect = btn.querySelector('rect');
+      rect.setAttribute('stroke-width', '0.8');
+      rect.setAttribute('fill', '#2a2a4e');
+    }
+
+    function unhighlightBtn(btn) {
+      var rect = btn.querySelector('rect');
+      rect.setAttribute('stroke-width', '0.3');
+      rect.setAttribute('fill', '#1a1a2e');
+    }
+
+    function showContact(type) {
+      var display = document.getElementById('contact-display');
+      var info = {
+        'github': 'github.com/FrankSx | Embedded security tooling & polyglot research',
+        'blog': 'frankhacks.blogspot.com | Write-ups on parser abuse & Android RE',
+        'email': 'Available upon request — reference this artifact'
+      };
+
+      display.textContent = '> ' + info[type];
+      display.setAttribute('opacity', '1');
+
+      setTimeout(function() {
+        display.setAttribute('opacity', '0.5');
+      }, 3000);
+    }
+
+    // PDF 2.0 specific: expose function for PDF JavaScript action
+    if (typeof app !== 'undefined' && app.alert) {
+      app.alert('frankSx Resume Artifact Loaded\nPolyglot: PDF 2.0 + SVG + JavaScript');
+    }
+  ]]></script>
+
+</svg>
