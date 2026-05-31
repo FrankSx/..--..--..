@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en" data-resume="RnJhbmtTeCAtIENyZWF0aXZlIFRlY2hub2xvZ2lzdCAvIFBhcnNlciBSZXNlYXJjaGVy">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FrankSx — Endless JPEG Resume</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root { color-scheme: dark; }
+    html, body { height: 100%; }
+    body {
+      font-family: 'JetBrains Mono', monospace;
+      background: #020617;
+      color: #e0f2fe;
+    }
+    .font-display { font-family: 'Space Grotesk', sans-serif; }
+    .glass {
+      backdrop-filter: blur(16px) saturate(140%);
+      background: rgba(8, 14, 28, 0.65);
+      border: 1px solid rgba(34, 211, 238, 0.15);
+    }
+    .cyan-glow {
+      box-shadow: 0 0 60px rgba(6,182,212,0.12), inset 0 1px 0 rgba(103,232,249,0.05);
+    }
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(34,211,238,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34,211,238,0.06) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .scanline { position: relative; overflow: hidden; }
+    .scanline::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(transparent, transparent 2px, rgba(34,211,238,0.04) 3px, transparent 4px);
+      mix-blend-mode: screen;
+      animation: scan 7s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes scan { 0% { transform: translateY(-100%); } 100% { transform: translateY(100%); } }
+    .noise::before {
+      content:''; position: fixed; inset:-50%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: .03; pointer-events: none; animation: n 1s steps(2) infinite;
+    }
+    @keyframes n { to { transform: translate(5%,5%); } }
+    ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-thumb { background: #0891b2; border-radius: 4px; }
+  </style>
+</head>
+<body class="noise min-h-screen grid-bg flex flex-col selection:bg-cyan-400/30 selection:text-cyan-100">
+  <header class="sticky top-0 z-40 border-b border-cyan-900/30 bg-slate-950/70 backdrop-blur-xl">
+    <div class="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></div>
+        <span class="font-display tracking-widest text-xs text-cyan-300">FRANKSX / PARSER.LAB</span>
+      </div>
+      <div class="text-[10px] text-cyan-200/50 tracking-widest">ENDLESS_JPEG_RESUME v2.4</div>
+    </div>
+  </header>
+
+  <main class="flex-1 w-full">
+    <div class="mx-auto max-w-7xl px-4 py-8 md:py-14">
+      <div class="grid lg:grid-cols-5 gap-8 items-start">
+        <!-- LIVE JPEG -->
+        <div class="lg:col-span-3">
+          <div class="glass cyan-glow rounded-[20px] p-3 md:p-4 scanline">
+            <div class="flex items-center justify-between px-2 pb-3">
+              <div class="flex items-center gap-2">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="text-cyan-400"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-opacity=".3"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg>
+                <h2 class="text-[11px] tracking-[0.2em] text-cyan-300">LIVE_SVG_JPEG</h2>
+              </div>
+              <div class="flex items-center gap-3 text-[10px] text-cyan-400/70">
+                <span id="fps" class="tabular-nums">60fps</span>
+                <span class="px-1.5 py-0.5 border border-cyan-400/20 rounded">SVG+JS</span>
+              </div>
+            </div>
+            
+            <div class="relative rounded-xl overflow-hidden border border-cyan-900/40 bg-black">
+              <svg id="endless" viewBox="0 0 800 600" class="w-full h-auto aspect-[4/3]">
+                <defs>
+                  <filter id="cr" x="-10%" y="-10%" width="120%" height="120%">
+                    <feTurbulence baseFrequency="0.02" numOctaves="1" result="t"/>
+                    <feDisplacementMap in="SourceGraphic" in2="t" scale="1"/>
+                  </filter>
+                </defs>
+                <image id="jpeg-feed" x="0" y="0" width="800" height="600" preserveAspectRatio="xMidYMid slice" filter="url(#cr)"/>
+                <rect x="0" y="0" width="800" height="600" fill="none" stroke="rgba(34,211,238,0.15)" stroke-width="2"/>
+              </svg>
+              <div class="absolute bottom-2 left-2 right-2 flex justify-between text-[9px] font-medium text-cyan-200/60">
+                <span>SELF-GENERATING</span>
+                <span id="stamp">--:--:--</span>
+              </div>
+            </div>
+
+            <div class="mt-3 grid grid-cols-3 gap-2 text-[10px]">
+              <button id="pauseBtn" class="glass rounded-lg py-2 hover:bg-cyan-400/10 transition border border-cyan-900/50">PAUSE</button>
+              <button id="glitchBtn" class="glass rounded-lg py-2 hover:bg-cyan-400/10 transition border border-cyan-900/50">GLITCH+</button>
+              <button id="saveBtn" class="glass rounded-lg py-2 hover:bg-cyan-400/10 transition border border-cyan-900/50">SAVE JPG</button>
+            </div>
+          </div>
+
+          <p class="mt-4 text-xs text-cyan-200/50 px-1">This JPEG is not a file. It’s rendered live to a &lt;canvas&gt;, encoded as image/jpeg, then injected into SVG &lt;image&gt; every ~120ms. No server. Press R to see what’s hidden inside the parser.</p>
+        </div>
+
+        <!-- RESUME CARD -->
+        <div class="lg:col-span-2">
+          <div class="glass cyan-glow rounded-[20px] p-6 md:p-8 h-full flex flex-col">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h1 class="font-display text-[32px] leading-none tracking-tight text-white">FrankSx</h1>
+                <p class="mt-1 text-sm text-cyan-300">Creative Technologist / Parser Researcher</p>
+              </div>
+              <div class="shrink-0 text-[10px] leading-tight px-2 py-1 rounded-md border border-cyan-400/20 text-cyan-300/80">SINCE<br>2004</div>
+            </div>
+
+            <div class="mt-8 flex-1 grid place-items-center">
+              <div class="text-center">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-500/10 border border-red-400/20 text-[11px] text-red-300 tracking-widest mb-4">CLASSIFIED</div>
+                <p class="text-[13px] leading-relaxed text-cyan-100/60 max-w-xs">Resume data is buried in the parser forest. Not rendered in DOM. Use the decoder.</p>
+                <p class="mt-3 text-[11px] text-cyan-200/40 font-mono">data-resume • &lt;/html&gt; comment • JPEG EXIF</p>
+              </div>
+            </div>
+
+            <div class="mt-8 flex items-center gap-3">
+              <button id="openResume" class="group relative overflow-hidden rounded-xl bg-cyan-400/10 border border-cyan-400/30 px-4 py-2.5 text-sm text-cyan-200 hover:bg-cyan-400/20 transition">
+                <span class="relative z-10 flex items-center gap-2"><kbd class="px-1.5 py-0.5 text-[10px] border border-cyan-400/30 rounded bg-black/30">R</kbd> Reveal Resume</span>
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] duration-700"></div>
+              </button>
+              <span class="text-[11px] text-cyan-200/40">Press R for resume • Press B for Vector B demo</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- HIDDEN RESUME OVERLAY -->
+  <div id="resume" class="hidden fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-2xl overflow-y-auto">
+    <div class="min-h-full flex items-center justify-center p-4">
+      <div class="w-full max-w-3xl glass cyan-glow rounded-2xl p-8 md:p-12 relative">
+        <button id="closeResume" class="absolute top-4 right-4 w-8 h-8 grid place-items-center rounded-lg border border-cyan-900/50 text-cyan-300/70 hover:text-white hover:bg-cyan-400/10">✕</button>
+        
+        <div class="font-display text-4xl text-white mb-2">FrankSx</div>
+        <div class="text-cyan-300 mb-8">Creative Technologist / Parser Researcher</div>
+
+        <div class="space-y-6 font-mono text-[13px] leading-relaxed">
+          <div>
+            <div class="text-cyan-400 text-xs tracking-widest mb-2">SUMMARY</div>
+            <p class="text-cyan-100/80">I break parsers for fun. Since 2004 I've been feeding null bytes, malformed HTML, and computationally illogical data into systems that think they're too modern to fail. Specialties: HTML5 error recovery, fuzzing, generative art, and hiding resumes in JPEG streams.</p>
+          </div>
+          <div>
+            <div class="text-cyan-400 text-xs tracking-widest mb-2">CORE SKILLS</div>
+            <p class="text-cyan-100/80">Parser Forest Testing • %00 Injection • HTML5 Tree Builder • SVG/Canvas JPEG Pipelines • WiFi/Bluetooth Fuzzing • Backwards Compatibility Archaeology</p>
+          </div>
+          <div>
+            <div class="text-cyan-400 text-xs tracking-widest mb-2">SELECTED PROJECTS</div>
+            <p class="text-cyan-100/80">1) Parser Forest Test — exploring content after &lt;/html&gt; that browsers still parse<br>2) Endless JPEG — this page, a self-generating JPEG inside SVG<br>3) Regret Bytes — null byte and invalid UTF-8 torture suite for modern frameworks</p>
+          </div>
+          <div>
+            <div class="text-cyan-400 text-xs tracking-widest mb-2">CONTACT</div>
+            <p class="text-cyan-200">franksx // find me where parsers break</p>
+          </div>
+          <div class="pt-4 border-t border-cyan-900/40 text-[11px] text-cyan-300/50">
+            This resume is embedded three ways: 1) visible here, 2) base64 in &lt;html data-resume&gt;, 3) as an HTML comment after &lt;/html&gt;. Parsers hate this trick.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ENDLESS JPEG GENERATOR
+    const canvas = document.createElement('canvas');
+    canvas.width = 800; canvas.height = 600;
+    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+    const img = document.getElementById('jpeg-feed');
+    const stamp = document.getElementById('stamp');
+    const fpsEl = document.getElementById('fps');
+    let t = 0, paused = false, glitch = 1, last = performance.now(), frames = 0;
+
+    function draw() {
+      if (paused) return;
+      t += 0.018;
+      // base
+      const g = ctx.createLinearGradient(0,0,800,600);
+      g.addColorStop(0, '#020617'); g.addColorStop(1, '#041027');
+      ctx.fillStyle = g; ctx.fillRect(0,0,800,600);
+
+      // parser forest waves
+      for (let i=0; i<70; i++) {
+        const y = 60 + i*8;
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        for (let x=0; x<=800; x+=20) {
+          const dy = Math.sin(t*1.3 + i*0.2 + x*0.01) * 6 * glitch;
+          ctx.lineTo(x, y + dy);
+        }
+        ctx.strokeStyle = `rgba(34,211,238,${0.04 + (i%5===0?0.12:0)})`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+
+      // blobs
+      for (let i=0; i<12; i++) {
+        const cx = 400 + Math.cos(t*0.7 + i) * 240;
+        const cy = 300 + Math.sin(t*0.9 + i*1.3) * 180;
+        const r = 30 + Math.sin(t*2 + i)*18*glitch;
+        ctx.fillStyle = `hsla(${185 + i*8}, 100%, 60%, ${0.06})`;
+        ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI*2); ctx.fill();
+      }
+
+      // text
+      ctx.save();
+      ctx.translate(40, 110);
+      ctx.font = '700 56px "Space Grotesk", system-ui';
+      ctx.fillStyle = 'rgba(165,243,252,0.95)';
+      ctx.fillText('FrankSx', 0, 0);
+      ctx.font = '500 16px "JetBrains Mono", monospace';
+      ctx.fillStyle = 'rgba(103,232,249,0.75)';
+      ctx.fillText('PARSER RESEARCHER // SINCE 2004', 2, 28);
+      ctx.restore();
+
+      // null byte grid
+      ctx.font = '12px "JetBrains Mono"';
+      ctx.fillStyle = 'rgba(34,211,238,0.35)';
+      for (let i=0; i<18; i++) {
+        ctx.fillText('%00', 650 + (i%3)*40, 140 + Math.floor(i/3)*20);
+      }
+
+      // glitch bars
+      for (let i=0;i<6*glitch;i++){
+        const gx = Math.random()*760;
+        const gy = Math.random()*560;
+        ctx.fillStyle = `rgba(34,211,238,${0.05 + Math.random()*0.15})`;
+        ctx.fillRect(gx, gy, 30+Math.random()*120, 2);
+      }
+
+      // timestamp
+      const now = new Date();
+      ctx.fillStyle = 'rgba(103,232,249,0.5)';
+      ctx.font = '11px "JetBrains Mono"';
+      ctx.fillText(`FRAME ${String(Math.floor(t*60)).padStart(6,'0')} // ${now.toISOString()} // JPEG`, 40, 572);
+
+      const dataUrl = canvas.toDataURL('image/jpeg', 0.62);
+      img.setAttribute('href', dataUrl);
+      img.setAttributeNS('http://www.w3.org/1999/xlink', 'href', dataUrl);
+      
+      stamp.textContent = now.toLocaleTimeString();
+      frames++;
+      const nowp = performance.now();
+      if (nowp - last > 1000) { fpsEl.textContent = Math.round(frames * 1000/(nowp-last)) + 'fps'; frames=0; last=nowp; }
+    }
+
+    let loop = setInterval(draw, 120);
+    draw();
+
+    // controls
+    document.getElementById('pauseBtn').onclick = () => {
+      paused = !paused;
+      document.getElementById('pauseBtn').textContent = paused ? 'RESUME' : 'PAUSE';
+    };
+    document.getElementById('glitchBtn').onclick = () => { glitch = glitch === 1 ? 2.5 : 1; };
+    document.getElementById('saveBtn').onclick = () => {
+      const a = document.createElement('a');
+      a.href = canvas.toDataURL('image/jpeg', 0.9);
+      a.download = `franksx-endless-${Date.now()}.jpg`;
+      a.click();
+    };
+
+    // resume reveal
+    const overlay = document.getElementById('resume');
+    const toggle = () => { overlay.classList.toggle('hidden'); document.body.classList.toggle('overflow-hidden'); };
+    document.getElementById('openResume').onclick = toggle;
+    document.getElementById('closeResume').onclick = toggle;
+    window.addEventListener('keydown', e => {
+      if (e.key.toLowerCase() === 'r') toggle();
+      if (e.key.toLowerCase() === 'b') {
+        const v = document.getElementById('vectorBOverlay');
+        if (v) v.classList.toggle('hidden');
+      }
+      if (e.key === 'Escape') {
+        if (!overlay.classList.contains('hidden')) toggle();
+        const v = document.getElementById('vectorBOverlay');
+        if (v && !v.classList.contains('hidden')) v.classList.add('hidden');
+      }
+    });
+
+    // Vector B close wiring
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('closeB')?.addEventListener('click', () => {
+        document.getElementById('vectorBOverlay')?.classList.add('hidden');
+      });
+    });
+
+    // decode base64 hint (console)
+    try {
+      const b64 = document.documentElement.dataset.resume;
+      console.log('%cFrankSx resume (decoded from data-resume):', 'color:#22d3ee', atob(b64));
+    } catch {}
+  </script>
+  
+  <!-- Vector B Overlay -->
+  <div id="vectorBOverlay" class="fixed inset-0 z-[100] bg-black/90 backdrop-blur-xl hidden flex items-center justify-center p-4">
+     <div class="w-full max-w-4xl glass cyan-glow rounded-2xl p-4">
+       <div class="flex justify-between items-center mb-2">
+         <h3 class="text-cyan-300 text-xs tracking-widest">VECTOR B — ALL ANCESTORS HAVE FILTERS</h3>
+         <button id="closeB" class="text-cyan-400/70 hover:text-cyan-300 text-xs">ESC</button>
+       </div>
+       <div class="aspect-video bg-slate-950 rounded-lg overflow-hidden border border-cyan-900/30">
+         <!-- Safe nested filter demo -->
+         <iframe sandbox="allow-scripts" srcdoc="
+           <svg style='position:absolute;width:0;height:0;'>
+             <filter id='parentFilter'><feGaussianBlur stdDeviation='3'/></filter>
+           </svg>
+           <div style='filter:url(#parentFilter);width:100%;height:100%;background:#0b1220;display:flex;align-items:center;justify-content:center'>
+             <iframe srcdoc='
+               <svg style=&quot;position:absolute;width:0;height:0;&quot;>
+                 <filter id=&quot;childFilter&quot;>
+                   <feImage href=&quot;data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCI+PHJlY3Qgd2lkdGg9IjEwIiBoZWlnaHQ9IjEwIiBmaWxsPSIjMjJkM2VlIi8+PC9zdmc+&quot; result=&quot;img&quot;/>
+                   <feBlend in=&quot;SourceGraphic&quot; in2=&quot;img&quot; mode=&quot;screen&quot;/>
+                   <feGaussianBlur stdDeviation=&quot;1.5&quot;/>
+                 </filter>
+               </svg>
+               <div style=&quot;filter:url(#childFilter);width:100vw;height:100vh;background:#020617;color:#a5f3fc;font:14px JetBrains Mono,monospace;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px&quot;>
+                 All ancestors have filters.<br>Traversal reached root? Check console.
+               </div>
+               <script>console.log(&quot;[Vector B demo] child filter painted — all ancestors filtered&quot;);parent.postMessage(&quot;vectorB-painted&quot;,&quot;*&quot;)</script>
+             ' style='width:90%;height:80%;border:1px solid #164e63;border-radius:8px;background:#000'></iframe>
+           </div>
+         " style="width:100%;height:100%;border:0"></iframe>
+       </div>
+       <p class='mt-2 text-[10px] text-cyan-200/50'>Safe demo: uses data: URI only. No cross-origin fetch. Press B again or ESC to close.</p>
+     </div>
+   </div>
+</body>
+</html>
+<!-- 
+FRANKSX — CREATIVE TECHNOLOGIST / PARSER RESEARCHER
+
+SUMMARY
+I break parsers for fun. Since 2004 I've been feeding null bytes, malformed HTML, and computationally illogical data into systems that think they're too modern to fail. Specialties: HTML5 error recovery, fuzzing, generative art, and hiding resumes in JPEG streams.
+
+SKILLS
+- Parser Forest Testing
+- %00 Injection
+- HTML5 Tree Builder
+- SVG/Canvas JPEG Pipelines
+- WiFi/Bluetooth Fuzzing
+- Backwards Compatibility Archaeology
+
+PROJECTS
+1. Parser Forest Test — content after </html>
